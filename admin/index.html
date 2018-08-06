@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>中部战区陆军-兴隆爆破器材仓库</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/medium-editor.min.css">
+    <link rel="stylesheet" href="./css/index.min.css">
+
+    <!--[if lt IE 9]>
+        <!--<script src="./assets/js/html5shiv.min.js"></script>-->
+    <script src="./assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/js/hanlebars.min.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.serializejson.min.js"></script>
+    <script type="text/javascript" src="./assets/js/medium-editor.min.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
+    <script type="text/javascript">
+        Handlebars.registerHelper('if_eq', function (v1, v2, options) {
+            if (v1 == v2) {
+                return options.fn(this);
+            }
+            else {
+                return options.inverse(this);
+            }
+        });
+    </script>
+    <script id="menu-tpl" type="text/x-handlebars-template">
+        <ul id="sidebar-menu">
+            {{#each body}}
+            <li class="menu-item">
+                <h2 class="menu-title {{fid}}" data-id="{{ fid }}" data-type="{{ isType }}">{{typeName}}</h2>
+                <ul class="nav">
+                    {{#each list}}
+                    <li class="nav-link {{fid}}" data-id="{{ fid }}" data-type="{{ isType }}">{{typeName}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script id="nav-tab-tpl" type="text/x-handlebars-template">
+        <ul class="nav clearfix" id="nav" role="tablist">
+            {{#each typeDTOList}}
+            <li role="presentation">
+                <a href="#{{ fid }}" class="{{fid}}" aria-controls="party-affairs" role="tab" data-toggle="tab" data-id="{{fid}}" data-index="{{@index}}">{{typeName}}</a>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="tab-content">
+            {{#each typeDTOList}}
+            <div role="tabpanel" class="tab-pane" id="{{fid}}"></div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="news-list" type="text/x-handlebars-template">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>标题</th>
+                <th>发布/编辑时间</th>
+                <th>操作</th>
+            </tr>
+            {{#each newDTOList}}
+            <tr data-id="{{id}}">
+                {{#if_eq status 1}}
+                <td>{{newsTitle}}</td>
+                <td>发布时间：{{date}}</td>
+                <td>
+                    {{#if_eq ../showUpdate 1}}
+                    <span class="set">设置</span>
+                    {{/if_eq}}
+                    <span class="del">删除</span>
+                </td>
+                {{else}}
+                <td><span class="text-danger">【草稿】</span> {{newsTitle}}</td>
+                <td class="text-danger">上次编辑：{{date}}</td>
+                <td>
+                    <span class="edit">编辑</span>
+                    <span class="del">删除</span>
+                </td>
+                {{/if_eq}}
+            </tr>
+            {{/each}}
+        </table>
+    </script>
+
+    <script id="model-list" type="text/x-handlebars-template">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>先进人物</th>
+                <th>发布/编辑时间</th>
+                <th>操作</th>
+            </tr>
+            {{#each typicalDTOList}}
+            <tr data-id="{{id}}">
+                {{#if_eq status 1}}
+                <td>{{typical}}</td>
+                <td>发布时间：{{date}}</td>
+                <td>
+                    <span class="del">删除</span>
+                </td>
+                {{else}}
+                <td><span class="text-danger">【草稿】</span> {{typical}}</td>
+                <td class="text-danger">上次编辑：{{date}}</td>
+                <td>
+                    <span class="edit">编辑</span>
+                    <span class="del">删除</span>
+                </td>
+                {{/if_eq}}
+            </tr>
+            {{/each}}
+        </table>
+    </script>
+
+    <script id="news-type-tpl" type="text/x-handlebars-template">
+        {{#each typeDTOList}}
+        <label class="radio-inline">
+            <input type="radio" name="fid" value="{{fid}}">
+            {{typeName}}
+        </label>
+        {{/each}}
+        <p class="tip text-muted"><span>选择后，新闻会显示在相应的类型中</span></p>
+    </script>
+</head>
+<body>
+<!--header-->
+<div id="header">
+    <a href="#" class="logo"><img src="./images/logo.png" alt="logo"></a>
+    <h1 class="title">兴隆爆破器材仓库新闻发布后台</h1>
+    <div class="login-state">
+        <label>您好，管理员</label>
+        <span class="logout">退出</span>
+    </div>
+</div>
+<!--header end-->
+
+<!--main-->
+<div class="clearfix" id="main">
+    <!--siderbar-->
+    <div class="pull-left" id="sidebar">
+
+    </div>
+    <!--siderbar end-->
+
+    <!--main content-->
+    <div id="main-content">
+        <!--location nav-->
+        <div class="location">当前位置：
+            <span class="location-item">本地资讯</span>
+        </div>
+        <!--location nav end-->
+
+        <!--real content-->
+        <div class="real-content">
+
+        </div>
+        <!--real content end-->
+    </div>
+    <!--main content end-->
+</div>
+<!--main end-->
+
+<!--set modal-->
+<div class="modal fade" id="setModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">设置</h4>
+            </div>
+            <div class="modal-body">
+                <form id="set-form" action="" class="form-horizontal">
+                    <input type="hidden" name="id" id="id">
+                    <div class="form-group"><label class="col-sm-2 control-label">新闻类型</label>
+                        <div class="col-sm-8 news-type">
+
+                        </div>
+                    </div>
+                    <div class="form-group" id="show-pic"><label class="col-sm-2 control-label">图片展示</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="showPic" value="0" checked> 不显示
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="showPic" value="1"> 轮播图
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="showPic" value="2"> 活动图片
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="showPic" value="3"> 横幅
+                            </label>
+                            <p class="text-muted">设置图片在首页的展示位置</p>
+                        </div>
+                    </div>
+                    <div class="form-group" id="form-img">
+                        <label for="pic-url" class="col-sm-2 control-label">图片上传</label>
+                        <div class="col-sm-8">
+                            <input class="form-control pic-url" readonly id="pic-url" name="picUrl" type="input"
+                                   placeholder="（必填）点击上传，建议尺寸100*100，不超过1M">
+                            <input class="hidden" type="file" name="multipartFile" id="pic-file">
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-8">
+                            <p class="text-success" style="display: none; line-height: 34px"></p>
+                            <p class="text-danger" style="display: none; line-height: 34px"></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--set modal end-->
+
+<!--confoirm modal-->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">您好，请确认</h4>
+            </div>
+            <div class="modal-body text-center">
+                <h4>你确定要删除当前新闻吗？</h4>
+                <p class="text-muted">该新闻将被立即删除，您不能撤销此操作。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">继续删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--confoirm modal end-->
+
+<!--loading modal-->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center" style="background-color: #333;">
+                <p class="text-info"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--loading modal end-->
+</body>
+</html>

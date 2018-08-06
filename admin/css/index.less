@@ -1,0 +1,356 @@
+html, body {
+  width: 100%;
+  min-width: 1000px;
+  height: 100%;
+  font-family: "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  line-height: 1.4em;
+  font-size: 14px;
+  color: #333;
+  a {
+    color: #333;
+  }
+  a:visited,
+  a:focus,
+  a:hover,
+  a:active {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #008842;
+  }
+}
+
+@theme-color: #055432;
+@light-color: #008842;
+@muted-color: #939393;
+
+.margin-right {
+  margin-right: 25px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.padding-left-right(@width: 9px) {
+  padding-left: @width;
+  padding-right: @width;
+}
+
+.text-overflow(@width) {
+  width: @width;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.clearfix:after {
+  content:"";
+  display: block;
+  clear:both;
+}
+
+.absolute-center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+
+.vertical-middle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.opacity(@opacity: 60) {
+  opacity: @opacity / 100;
+  filter: alpha(opacity=@opacity);
+}
+
+.border(@color: #E6E6E6) {
+  border: 1px solid @color;
+}
+
+.border-bottom {
+  border-bottom: 1px solid @theme-color;
+}
+
+.btn-green {
+  background-color: @theme-color;
+  color: #fff;
+  &:hover {
+    background-color: @light-color;
+    color: #fff;
+  }
+}
+
+.btn-green-outer {
+  background-color: #FFF;
+  .border(@theme-color);
+  &:hover {
+    background-color: @theme-color;
+    color: #fff;
+  }
+}
+
+@leftWidth: 200px;
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 80px;
+  color: #fff;
+  background-color: @theme-color;
+  .logo {
+    position: relative;
+    float: left;
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    line-height: 80px;
+    img {
+      .absolute-center;
+      width: 156px;
+      height: 58px;
+    }
+  }
+  .title {
+    float: left;
+    width: 280px;
+    height: 28px;
+    padding: 13px 0;
+    font-size: 20px;
+  }
+  .login-state {
+    float: right;
+    width: 200px;
+    padding:30px 20px;
+    .login,
+    .logout {
+      padding-left: 10px;
+      cursor: pointer;
+    }
+    .logout:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+//登录页
+.login-container {
+  width: 100%;
+  padding-top: 200px;
+  .login-wrapper {
+    width: 380px;
+    height: 310px;
+    padding: 30px 46px;
+    .border();
+    margin: 0 auto;
+    .content-tile {
+      margin-top: 0px;
+      margin-bottom: 35px;
+      height: 28px;
+      line-height: 28px;
+      font-size: 20px;
+      color: @theme-color;
+    }
+    .control-label {
+      font-weight: normal;
+    }
+    .login-btn {
+      margin-top: 48px;
+    }
+  }
+}
+
+#main {
+  position: relative;
+  margin-top: 80px;
+  width: 100%;
+  height: 100%;
+}
+
+#sidebar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  z-index: 998;
+  width: @leftWidth;
+  height: 100%;
+  background-color: #fff;
+  color: @theme-color;
+  height: 100%;
+  border-right: 1px solid @theme-color;
+  #sidebar-menu {
+    .menu-item{
+      .menu-title {
+        height: 40px;
+        margin-top: 0;
+        margin-bottom: 1px;
+        line-height: 40px;
+        padding-left: 40px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #F2F2F2;
+      }
+      .nav {
+        .nav-link {
+          height: 40px;
+          line-height: 40px;
+          margin-bottom: 1px;
+          padding-left: 50px;
+          cursor: pointer;
+          background-color: #F2F2F2;
+        }
+        .active {
+          background-color: #CDDDD6;
+        }
+      }
+    }
+    .open {
+      .menu-title {
+        background-color: #CDDDD6 !important;
+      }
+    }
+  }
+}
+
+#nav-tab {
+  height: 700px;
+  .nav-tabs {
+    height: 42px;
+    margin-bottom: 15px;
+  }
+  .tab-content {
+    height: 600px;
+  }
+
+}
+
+#main-content {
+  margin-left: @leftWidth;
+  padding: 10px 20px;
+  .location {
+    margin-bottom: 20px;
+    color: @muted-color;
+  }
+  .table-toolbar {
+    margin-bottom: 20px;
+    #createNew {
+      display: inline-block;
+      margin-right: 20px;
+      width: 80px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      background-color: @theme-color;
+    }
+  }
+  .real-content {
+    position: relative;
+    padding-bottom: 240px;
+    #newForm {
+      .form-group {
+        height: auto;
+        margin-bottom: 30px;
+        .control-label {
+          font-weight: normal;
+        }
+        .tip {
+          margin-top: 10px;
+        }
+      }
+    }
+    .edit,
+    .set,
+    .del {
+      cursor: pointer;
+    }
+    .edit:hover {
+      font-weight: bold;
+    }
+    .set:hover {
+      font-weight: bold;
+    }
+    .del:hover {
+      font-weight: bold;
+      color: red;
+    }
+  }
+}
+
+#nav-tab {
+  margin-bottom: 20px;
+  .nav {
+    height: 40px;
+    .border-bottom;
+    margin-bottom: 12px;
+    li {
+      float: left;
+      a {
+        padding: 10px 46px 9px;
+        color: @theme-color;
+      }
+    }
+    li.active {
+      .border-bottom;
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// 分页
+.pagenation {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 50px;
+  color: @theme-color;
+  .pagenation-wrapper {
+    button {
+      padding: 3px 5px;
+      border: 0;
+      background-color: #fff;
+      &:hover {
+        color: #f1f1f1;
+        background-color: @theme-color;
+      }
+      &.first,
+      &.next {
+        margin-right: 20px;
+      }
+    }
+    .prev,
+    .current {
+      margin-right: 40px;
+    }
+  }
+}
+
+
+#loadingModal {
+  .modal-dialog {
+    margin: 200px auto !important;
+    .modal-content {
+      background-color: #000000;
+      .text-info {
+        color: #fff;
+        margin-bottom: 0;
+        line-height: 30px;
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>中部战区陆军 · 兴隆爆破器材仓库</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/idangerous.swiper2.7.6.css">
+    <link rel="stylesheet" href="../css/common.min.css">
+    <link rel="stylesheet" href="../css/detail.min.css">
+
+    <!--[if lt IE 9]>
+        <!--<script src="./assets/js/html5shiv.min.js"></script>-->
+    <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!--先进详情-->
+    <script id="model-detail-tpl" type="text/x-handlebars-template">
+        <p class="location">当前位置：首页 >> 先进典型</p>
+        <div id="model-detail">
+            <div class="photo pull-left"><img src="{{picUrl}}" alt="{{name}}"></div>
+            <div class="info">
+                <p class="basic-info"><strong class="name">{{name}}</strong> <span class="text-muted">{{department}}</span>
+                </p>
+                <p class="story">{{mainDeeds}}</p>
+                <div class="detail"></div>
+            </div>
+        </div>
+    </script>
+</head>
+<body>
+<!--header-->
+<div id="header">
+    <div class="container clearfix">
+        <!--<a href="../index.html" class="pull-left logo" target="_self"><img src="../images/logo.png" alt="logo"></a>-->
+        <!--<h1 class="pull-left">中部战区陆军 · 兴隆爆破器材仓库</h1>-->
+    </div>
+</div>
+<!--header end-->
+
+
+<!--nav-->
+<div class="container-fluid" id="nav">
+    <ul class="nav-bar container">
+        <li><a href="../index.html" target="_self">首页</a></li>
+        <li><a href="./list.html?fid=1010" target="_self">新闻资讯</a></li>
+        <li><a href="./list.html?fid=105010" target="_self">党委工作</a></li>
+        <li><a href="./list.html?fid=105020" target="_self">练兵备战</a></li>
+        <li><a href="./list.html?fid=105030" target="_self">政治建设</a></li>
+        <li><a href="./list.html?fid=105040" target="_self">后勤保障</a></li>
+        <li><a href="./list.html?fid=105050" target="_self">基层建设</a></li>
+    </ul>
+</div>
+<!--nav end-->
+
+<!--content-->
+<div class="container" id="main-container">
+    <div class="clearfix" id="model-detail-wrapper">
+
+    </div>
+</div>
+<!--content end-->
+
+<!--footer-->
+<div class="container-fluid text-center" id="footer">
+    <p><span class="address">通讯地址：河北省承德市兴隆县小东区八楞山1号</span> <span class="telephone">电话：0231-84415</span></p>
+    <p>中部战区陆军兴隆器材爆破仓库版权所有</p>
+</div>
+<!--footer end-->
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/hanlebars.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var id = getSearchId();
+
+        $.getJSON(baseUrl + '/web/getTypicalDetail?id=' + id, function(data) {
+            if (data.status !== 1) {
+                alert(data.message);
+            } else {
+                var tplFn = Handlebars.compile($('#model-detail-tpl').html()),
+                    detailHtml = tplFn(data.body);
+
+                $('#model-detail-wrapper').html(detailHtml);
+                $('.detail').html(data.body.deedContent);
+            }
+        });
+    });
+</script>
+</body>
+</html>

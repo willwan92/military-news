@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>中部战区陆军 · 兴隆爆破器材仓库</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/idangerous.swiper2.7.6.css">
+    <link rel="stylesheet" href="../css/common.min.css">
+    <link rel="stylesheet" href="../css/list.min.css">
+
+    <!--[if lt IE 9]>
+        <!--<script src="./assets/js/html5shiv.min.js"></script>-->
+    <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!--通知公告-->
+    <script id="notice-tpl" type="text/x-handlebars-template">
+        {{#each networkNewsList}}
+        <li><a class="news" href="./content-detail.html?id={{id}}" target="_blank"><span class="datetime">{{date}}</span>{{newsTitle}}</a></li>
+        {{/each}}
+    </script>
+    
+    <!--先进典型-->
+    <script id="model-tpl" type="text/x-handlebars-template">
+        <div class="block-heading">
+            <h3 class="third-title">先进典型<a class="more" href="./list.html?fid=30" target="_self">更多>></a></h3>
+        </div>
+        <a class="model clearfix" href="./model-detail.html?id={{id}}" target="_blank">
+            <div class="pull-left photo"><img src="{{picUrl}}" alt="{{name}}"></div>
+            <div class="info">
+                <h4 class="model-name">{{name}}</h4>
+                <p class="text-muted">{{department}}</p>
+                <p class="story">{{mainDeeds}}</p>
+                <p class="multiline-overflow read-more detail">
+                </p>
+            </div>
+        </a>
+    </script>
+
+    <!--先进典型列表-->
+    <script id="model-list-tpl" type="text/x-handlebars-template">
+        <p class="location">当前位置：<a href="../index.html">首页</a> <span class="location-item"></span></p>
+        <ul class="model-list">
+            {{#each moreTypicalList}}
+            <li>
+                <a class="clearfix" href="./model-detail.html?id={{id}}" target="_blank">
+                    <div class="photo"><img src="{{picUrl}}" alt="{{name}}"></div>
+                    <div class="info">
+                        <p class="basic-info"><strong class="name">{{name}}</strong> <span class="text-muted">{{department}}</span>
+                        </p>
+                        <p class="story"><strong>{{mainDeeds}}</strong></p>
+                        <div class="detail"></div>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+
+        <div class="pagenation text-center">
+            <span class="pagenation-wrapper">
+                <button class="first" type="button">首页</button>
+                <button class="prev" type="button">上一页</button>
+                <span class="current">{{pageNo}}/{{pageSumCount}}</span>
+                <button class="next active" type="button">下一页</button>
+                <button class="last" type="button">尾页</button>
+            </span>
+        </div>
+    </script>
+
+    <!--tab新闻列表-->
+    <script id="tab-list" type="text/x-handlebars-template">
+        {{#each moreNewsList}}
+        <li><a href="./content-detail.html?id={{id}}" target="_blank">{{newsTitle}}</a> <span class="time">{{date}}</span></li>
+        {{/each}}
+    </script>
+
+    <!--本地新闻列表-->
+    <script id="local-news-list-tpl" type="text/x-handlebars-template">
+        <p class="location">当前位置：<a href="../index.html">首页</a> <span class="location-item"></span></p>
+        <ul class="real-list">
+            {{#each moreNewsList}}
+            <li><a href="./content-detail.html?id={{id}}" target="_blank">{{newsTitle}}</a> <span class="time">{{date}}</span></li>
+            {{/each}}
+        </ul>
+
+        <div class="pagenation text-center">
+            <span class="pagenation-wrapper">
+                <button class="first" type="button">首页</button>
+                <button class="prev" type="button">上一页</button>
+                <span class="current">{{pageNo}}/{{pageSumCount}}</span>
+                <button class="next active" type="button">下一页</button>
+                <button class="last" type="button">尾页</button>
+            </span>
+        </div>
+    </script>
+
+    <!--新闻资讯-->
+    <script id="news-tpl" type="text/x-handlebars-template">
+        <p class="location">当前位置：<a href="../index.html">首页</a> <span class="location-item"></span></p>
+        <ul class="nav clearfix" role="tablist">
+            {{#each networkNewsDTOList}}
+            <li role="presentation"><a data-pageno="{{pageNo}}" data-pagesum="{{pageSumCount}}" data-fid="{{fid}}" href="#{{fid}}" role="tab" data-toggle="tab">{{typeName}}</a></li>
+            {{/each}}
+        </ul>
+
+        <div class="tab-content">
+            {{#each networkNewsDTOList}}
+            <ul role="tabpanel" class="tab-pane" id="{{fid}}">
+                {{#each networkNewsList}}
+                <li><a href="./content-detail.html?id={{id}}" target="_blank">{{newsTitle}}</a> <span class="time">{{date}}</span></li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        </div>
+        {{#each_start_end networkNewsDTOList 0 1}}
+        <div class="pagenation text-center">
+            <span class="pagenation-wrapper">
+                <button class="first" type="button">首页</button>
+                <button class="prev" type="button">上一页</button>
+                <span class="current"><span class="pageNum"></span>/<span class="pageSum"></span></span>
+                <button class="next active" type="button">下一页</button>
+                <button class="last" type="button">尾页</button>
+            </span>
+        </div>
+        {{/each_start_end}}
+    </script>
+</head>
+<body>
+<!--header-->
+<div id="header">
+    <div class="container clearfix">
+        <!--<a href="../index.html" class="pull-left logo" target="_self"><img src="../images/logo.png" alt="logo"></a>-->
+        <!--<h1 class="pull-left">中部战区陆军 · 兴隆爆破器材仓库</h1>-->
+    </div>
+</div>
+<!--header end-->
+
+
+<!--nav-->
+<div class="container-fluid" id="nav">
+    <ul class="nav-bar container">
+        <li class="active"><a href="../index.html" target="_self">首页</a></li>
+        <li><a href="./list.html?fid=1010" target="_self">新闻资讯</a></li>
+        <li><a href="./list.html?fid=105010" target="_self">党委工作</a></li>
+        <li><a href="./list.html?fid=105020" target="_self">练兵备战</a></li>
+        <li><a href="./list.html?fid=105030" target="_self">政治建设</a></li>
+        <li><a href="./list.html?fid=105040" target="_self">后勤保障</a></li>
+        <li><a href="./list.html?fid=105050" target="_self">基层建设</a></li>
+    </ul>
+</div>
+<!--nav end-->
+
+<div class="container clearfix" id="main-container">
+    <!--content-->
+    <div class="pull-left" id="list-wrapper">
+
+    </div>
+    <!--content end-->
+
+    <!--sidebar-->
+    <div id="sidebar" class="pull-right">
+        <div id="notice">
+            <div class="block-heading clearfix">
+                <h3 class="third-title">通知公告<a class="more" href="./list.html?fid=201" target="_self">更多>></a></h3>
+            </div>
+            <ul class="tab-content" id="notice-tab-content">
+
+            </ul>
+        </div>
+
+        <div id="advanced-model">
+
+        </div>
+
+        <div class="news-paper">
+            <div class="block-heading">
+                <h3 class="third-title">天天读报</h3>
+            </div>
+            <ul class="tab-content">
+                <li><a href="http://newspaper.qjw.jw/paper/523.html" target="_blank">人民日报</a><span class="divide-line">|</span></li>
+                <li><a href="http://newspaper.qjw.jw/paper/60.html" target="_blank">解放军报</a><span class="divide-line">|</span></li>
+                <li><a href="http://23.67.75.31" target="_blank">人民陆军</a></li>
+                <li><a href="http://newspaper.qjw.jw/paper/270.html" target="_blank">光明日报</a><span class="divide-line">|</span></li>
+                <li><a href="http://newspaper.qjw.jw/paper/766.html" target="_blank">中国青年报</a><span class="divide-line">|</span></li>
+                <li><a href="http://newspaper.qjw.jw/paper/3418.html" target="_blank">参考消息</a></li>
+                <li><a href="http://newspaper.qjw.jw/paper/61.html" target="_blank">中国国防报</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--sidebar end-->
+</div>
+
+<!--footer-->
+<div class="container-fluid text-center" id="footer">
+    <p><span class="address">通讯地址：河北省承德市兴隆县小东区八楞山1号</span> <span class="telephone">电话：0231-84415</span></p>
+    <p>中部战区陆军兴隆器材爆破仓库版权所有</p>
+</div>
+<!--footer end-->
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/js/hanlebars.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript" src="../js/list.js"></script>
+</body>
+</html>

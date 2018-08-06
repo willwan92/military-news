@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>兴隆爆破器材仓库新闻发布后台</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/index.min.css">
+
+    <!--[if lt IE 9]>
+        <!--<script src="../assets/js/html5shiv.min.js"></script>-->
+        <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="login-body">
+<!--header-->
+<div id="header">
+    <a href="#" class="logo"><img src="../images/logo.png" alt="logo"></a>
+    <h1 class="title">兴隆爆破器材仓库新闻发布后台</h1>
+    <div class="login-state">
+        <label>您好，管理员</label>
+        <span class="login">请登录</span>
+    </div>
+</div>
+<!--header end-->
+
+<!--login-->
+<div class="login-container">
+    <div class="login-wrapper">
+        <h2 class="content-tile text-center">管理员登录</h2>
+        <form class="form-horizontal" id="loginForm" action="" method="post">
+            <div class="form-group">
+                <label for="userName" class="col-sm-3 control-label">账号</label>
+                <div class="div col-sm-8"><input type="text" class="form-control"  id="userName" name="userName"  placeholder=""></div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-3 control-label">密码</label>
+                <div class="div col-sm-8"><input type="password" class="form-control" id="password" name="password" placeholder=""></div>
+            </div>
+            <div class="form-group text-center login-btn">
+                <button id="login" type="submit" class="btn btn-sm btn-green" style="width: 120px; color: #fff;">登 录</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--login end-->
+
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.serializejson.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        jQuery.support.cors=true;
+        $( "#loginForm" ).on( "submit", function( event ) {
+            event.preventDefault();
+            var userData = $(this).serializeJSON();
+            $.ajax({
+                type: 'post',
+                data: JSON.stringify(userData),
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                url: 'http://23.75.44.2:9090/admin/login',
+                success: function (data) {
+                    if (data.status === 1) {
+                        sessionStorage.setItem('isLogin', true);
+                        window.location.href = "../index.html";
+                    }
+                    else {
+                        alert('错误：' + data.message);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

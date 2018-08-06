@@ -1,0 +1,160 @@
+@theme-color: #055432;
+@muted-color: #939393;
+
+.text-overflow(@width) {
+  width: @width;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.border(@color: #E6E6E6) {
+  border: 1px solid @color;
+}
+
+.border-bottom {
+  border-bottom: 1px solid @theme-color;
+}
+
+.padding-left-right(@width: 9px) {
+  padding-left: @width;
+  padding-right: @width;
+}
+
+
+#main-container {
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+#list-wrapper {
+  position: relative;
+  width: 695px;
+  min-height: 682px;
+  padding: 8px 8px 100px;
+  .border();
+  .location {
+    margin-bottom: 10px;
+    color: @muted-color;
+  }
+  .nav {
+    .border-bottom;
+    margin-bottom: 12px;
+    li {
+      float: left;
+      a {
+        padding: 10px 66px 9px;
+        color: @theme-color;
+        &:hover {
+          background-color: transparent !important;
+        }
+      }
+
+    }
+    li.active {
+      .border-bottom;
+      a {
+        font-weight: bold;
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  .tab-content {
+    li {
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 7px;
+      overflow: hidden;
+      a {
+        float: left;
+        width: 560px;
+        margin-right: 15px;
+      }
+      .time {
+        float: left;
+        text-align: right;
+        width: 100px;
+        color: @muted-color;
+      }
+    }
+  }
+}
+
+// 新闻资讯、本地新闻...等列表
+.real-list {
+  li {
+    line-height: 22px;
+    font-size: 16px;
+    margin-bottom: 7px;
+    padding: 8px 0;
+    overflow: hidden;
+    a {
+      float: left;
+      width: 560px;
+      margin-right: 15px;
+    }
+    .time {
+      float: left;
+      text-align: right;
+      width: 100px;
+      color: @muted-color;
+    }
+  }
+}
+
+//先进典型列表
+.model-list {
+  li {
+    height: 160px;
+    padding-top: 20px;
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .photo {
+        float: left;
+        width: 100px;
+        height: 100%;
+        margin-right: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .info {
+        float: left;
+        width: 555px;
+        .basic-info {
+          height: 22px;
+          line-height: 22px;
+          margin-bottom: 10px;
+          .name {
+            font-size: 16px;
+            margin-right: 20px;
+          }
+          .text-muted {
+            font-size: 12px;
+          }
+        }
+        .story {
+          margin-bottom: 10px;
+        }
+        .detail {
+          line-height: 26px;
+          width: 555px;
+          height: 78px;
+        }
+      }
+    }
+  }
+}
+
+// 列表页侧边栏
+#sidebar {
+  #notice,
+  #advanced-model {
+    margin-bottom: 20px;
+  }
+}

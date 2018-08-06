@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>中部战区陆军 · 兴隆爆破器材仓库</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/idangerous.swiper2.7.6.css">
+    <link rel="stylesheet" href="../css/common.min.css">
+    <link rel="stylesheet" href="../css/detail.min.css">
+
+    <!--[if lt IE 9]>
+        <!--<script src="./assets/js/html5shiv.min.js"></script>-->
+    <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        #close-bar {
+            height: 45px;
+            line-height: 45px;
+            cursor: pointer;
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+<!--header-->
+<div id="header">
+    <div class="container clearfix">
+        <a href="#" class="pull-left logo"><img src="../images/logo.png" alt="logo"></a>
+        <h1 class="pull-left">中部战区陆军 · 兴隆爆破器材仓库</h1>
+    </div>
+</div>
+<!--header end-->
+
+<!--nav-->
+<div class="container text-center" id="close-bar">预览视图，点击关闭预览</div>
+<!--nav end-->
+
+<!--content-->
+<div class="container" id="main-container" style="padding-top: 0;">
+    <div class="clearfix" id="model-detail-wrapper">
+        <div id="model-detail">
+            <div class="photo pull-left"><img src="" alt=""></div>
+            <div class="info">
+                <p class="basic-info"><strong class="name"></strong> <span class="text-muted department"></span>
+                </p>
+                <p class="story"></p>
+                <div class="detail">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--content end-->
+
+<!--footer-->
+<div class="container-fluid text-center" id="footer">
+    <p><span class="address">通讯地址：河北省承德市兴隆县小东区八楞山1号</span> <span class="telephone">电话：0231-84415</span></p>
+    <p>中部战区陆军兴隆器材爆破仓库版权所有</p>
+</div>
+<!--footer end-->
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+   $(function () {
+       $('.name').html(sessionStorage.getItem('name'));
+       $('.department').html(sessionStorage.getItem('department'));
+       $('.story').html(sessionStorage.getItem('mainDeeds'));
+       $('.photo').find('img').attr('src', sessionStorage.getItem('picUrl'));
+       $('.detail').html(sessionStorage.getItem('deedContent'));
+       $('#close-bar').click(function () {
+           window.close();
+       });
+   });
+</script>
+</body>
+</html>
