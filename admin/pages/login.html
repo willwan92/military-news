@@ -19,7 +19,7 @@
 <!--header-->
 <div id="header">
     <a href="#" class="logo"><img src="../images/logo.png" alt="logo"></a>
-    <h1 class="title">兴隆爆破器材仓库新闻发布后台</h1>
+    <!--<h1 class="title">兴隆爆破器材仓库新闻发布后台</h1>-->
     <div class="login-state">
         <label>您好，管理员</label>
         <span class="login">请登录</span>
@@ -55,13 +55,15 @@
         jQuery.support.cors=true;
         $( "#loginForm" ).on( "submit", function( event ) {
             event.preventDefault();
-            var userData = $(this).serializeJSON();
+            var userData = $(this).serializeJSON(),
+//                loginUrl = 'http://23.75.44.2:9090/admin/login';
+                loginUrl = 'http://10.60.5.74:9090/admin/login';
             $.ajax({
                 type: 'post',
                 data: JSON.stringify(userData),
                 dataType: 'json',
                 contentType: 'application/json; charset=UTF-8',
-                url: 'http://23.75.44.2:9090/admin/login',
+                url: loginUrl,
                 success: function (data) {
                     if (data.status === 1) {
                         sessionStorage.setItem('isLogin', true);

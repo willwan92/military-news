@@ -38,9 +38,8 @@ $.ajaxSetup({
     contentType: 'application/json; charset=UTF-8'
 });
 
-var baseUrl = 'http://23.75.44.2:9090';
-// var baseUrl = 'http://192.168.0.150:9090';
-// var baseUrl = 'http://39.105.87.164:9090';
+// var baseUrl = 'http://23.75.44.2:9090';
+var baseUrl = 'http://10.60.5.74:9090';
 
 function getSearchId() {
     return window.location.search.split('=')[1];

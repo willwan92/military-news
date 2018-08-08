@@ -87,8 +87,7 @@ var home = (function ($) {
         pagesCount = 1,
         isPublish = false,
         // baseUrl = 'http://23.75.44.2:9090';
-        baseUrl = 'http://192.168.0.155:9090';
-        // baseUrl = 'http://39.105.87.164:9090';
+        baseUrl = 'http://10.60.5.74:9090';
 
     function init() {
         initMenu();

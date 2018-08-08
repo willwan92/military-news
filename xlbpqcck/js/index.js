@@ -130,8 +130,6 @@ var homePage = (function ($) {
             htmlStr = tplFn(indexModelArr[i]);
             $(containerSelectorArr[i]).html(htmlStr);
         }
-
-        $('#advanced-model').find('.detail').html(dataBody.typicalDTO.deedContent);
     }
 
     initEvent = function () {

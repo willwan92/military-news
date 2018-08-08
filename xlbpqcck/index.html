@@ -66,11 +66,6 @@
                     <li class="news-item"><a href="./pages/content-detail.html?id={{id}}" target="_blank">{{newsTitle}}</a></li>
                     {{/each_start_end}}
                 </ul>
-                <ul class="news-list-2">
-                    {{#each_start_end localNewsList 5 10}}
-                    <li class="news-item"><a href="./pages/content-detail.html?id={{id}}" target="_blank">{{newsTitle}}</a></li>
-                    {{/each_start_end}}
-                </ul>
             </div>
             {{/each}}
         </div>
@@ -87,8 +82,7 @@
                 <h4 class="model-name">{{name}}</h4>
                 <p class="text-muted">{{department}}</p>
                 <p class="story">{{mainDeeds}}</p>
-                <p class="multiline-overflow read-more detail">
-                </p>
+                <div class="multiline-overflow read-more detail">{{{deedContent}}}</div>
             </div>
         </a>
     </script>
@@ -115,7 +109,7 @@
     <!--政策法规-->
     <script id="policy-tpl" type="text/x-handlebars-template">
         {{#each networkNewsList}}
-        <li><a href="./pages/content-detail.html?id={{id}}" target="-_blank">{{newsTitle}}</a></li>
+        <li><a href="./pages/content-detail.html?id={{id}}" target="_blank">{{newsTitle}}</a></li>
         {{/each}}
     </script>
     <script src="../admin/js/index.js"></script>
@@ -124,7 +118,7 @@
 <!--header-->
 <div id="header">
     <div class="container clearfix">
-        <!--<a href="#" class="pull-left logo"><img src="./images/logo.png" alt="logo"></a>-->
+        <a href="#" class="pull-left logo"><img src="./images/logo.png" alt="logo"></a>
         <!--<h1 class="pull-left">中部战区陆军 · 兴隆爆破器材仓库</h1>-->
     </div>
 </div>
@@ -245,8 +239,8 @@
 
 <!--footer-->
 <div class="container-fluid text-center" id="footer">
-    <p><span class="address">通讯地址：河北省承德市兴隆县小东区八楞山1号</span> <span class="telephone">电话：0231-84415</span></p>
-    <p>中部战区陆军兴隆器材爆破仓库版权所有</p>
+    <!--<p><span class="address">通讯地址：河北省承德市兴隆县小东区八楞山1号</span> <span class="telephone">电话：0231-84415</span></p>-->
+    <!--<p>中部战区陆军兴隆器材爆破仓库版权所有</p>-->
 </div>
 <!--footer end-->
 <script type="text/javascript" src="./assets/js/jquery.min.js"></script>

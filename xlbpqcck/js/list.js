@@ -52,15 +52,6 @@ var listPage = (function () {
 
             $('#list-wrapper').html(listHtml);
 
-            if (fid == '30') {
-                var details = $('.model-list').find('.detail'),
-                    typecalList = dataBody.moreTypicalList;
-
-                for (var i = 0, len = typecalList.length; i < len; i++) {
-                    details[i].innerHTML = typecalList[i].deedContent;
-                }
-            }
-
             changeLocation();
             initPagenation(dataBody.pageNo, dataBody.pageSumCount);
         }
@@ -114,7 +105,6 @@ var listPage = (function () {
             htmlStr = tplFn(sidebarData[i]);
             $(containerArr[i]).html(htmlStr);
         }
-        $('#advanced-model').find('.detail').html(dataBody.typicalDTO.deedContent);
     }
 
     function initSiderBar() {

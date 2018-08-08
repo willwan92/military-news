@@ -26,7 +26,7 @@
             <span class="time">{{date}}</span>
         </p>
 
-        <div class="content-detail"></div>
+        <div class="content-detail">{{{newsContent}}}</div>
     </script>
     <!--{{#if_eq picUrl ""}}-->
     <!--{{else}}-->
@@ -91,7 +91,6 @@
 
                 switchActiveNav(dataBody.fid);
                 $('#content-wrapper').html(detailHtml);
-                $('.content-detail').html(dataBody.newsContent);
             }
         });
 

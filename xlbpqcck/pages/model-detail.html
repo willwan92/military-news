@@ -24,7 +24,7 @@
                 <p class="basic-info"><strong class="name">{{name}}</strong> <span class="text-muted">{{department}}</span>
                 </p>
                 <p class="story">{{mainDeeds}}</p>
-                <div class="detail"></div>
+                <div class="detail">{{{deedContent}}}</div>
             </div>
         </div>
     </script>
@@ -83,7 +83,6 @@
                     detailHtml = tplFn(data.body);
 
                 $('#model-detail-wrapper').html(detailHtml);
-                $('.detail').html(data.body.deedContent);
             }
         });
     });
